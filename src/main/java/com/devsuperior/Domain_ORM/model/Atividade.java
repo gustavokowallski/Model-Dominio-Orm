@@ -21,6 +21,10 @@ public class Atividade {
     @JoinTable(name = "tb_participantes_atividades", joinColumns = @JoinColumn(name = "atividades_id"), inverseJoinColumns = @JoinColumn(name = "participantes_id"))
     private Set<Participante> participantes = new HashSet<>();
 
+    @ManyToOne
+    @JoinColumn(name = "categoria_id")
+    private Categoria categoria;
+
     public Atividade(){}
 
     public Atividade(String nome, String descricao, Double price) {
