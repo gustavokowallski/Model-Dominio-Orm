@@ -2,7 +2,9 @@ package com.devsuperior.Domain_ORM.model;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table (name = "tb_participantes")
@@ -13,6 +15,9 @@ public class Participante {
     private Long id;
     private String nome;
     private String email;
+
+    @ManyToMany(mappedBy = "participantes")
+    private Set<Atividade> atividades = new HashSet<>();
 
     public Participante(){}
 

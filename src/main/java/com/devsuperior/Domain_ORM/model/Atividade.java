@@ -3,7 +3,10 @@ package com.devsuperior.Domain_ORM.model;
 import jakarta.persistence.*;
 import org.springframework.boot.autoconfigure.web.WebProperties;
 
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
+
 @Entity
 @Table(name = "tb_atividade")
 public class Atividade {
@@ -13,6 +16,10 @@ public class Atividade {
     private String nome;
     private String descricao;
     private Double price;
+
+    @ManyToMany
+    @JoinTable(name = "tb_participantes_atividades", joinColumns = @JoinColumn(name = "atividades_id"), inverseJoinColumns = @JoinColumn(name = "participantes_id"))
+    private Set<Participante> participantes = new HashSet<>();
 
     public Atividade(){}
 
@@ -54,6 +61,10 @@ public class Atividade {
         this.price = price;
     }
 
+    public Set<Participante> getParticipantes() {
+        return participantes;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
@@ -65,4 +76,6 @@ public class Atividade {
     public int hashCode() {
         return Objects.hashCode(id);
     }
+
+
 }
