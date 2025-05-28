@@ -14,6 +14,10 @@ public class Bloco {
     private Instant inicio;
     private Instant fim;
 
+    @OneToOne
+    @MapsId
+    private Atividade atividade;
+
     public Bloco(){}
 
     public Bloco(Instant inicio, Instant fim) {

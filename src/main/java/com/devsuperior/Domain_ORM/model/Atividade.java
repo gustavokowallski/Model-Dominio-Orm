@@ -21,6 +21,9 @@ public class Atividade {
     @JoinTable(name = "tb_participantes_atividades", joinColumns = @JoinColumn(name = "atividades_id"), inverseJoinColumns = @JoinColumn(name = "participantes_id"))
     private Set<Participante> participantes = new HashSet<>();
 
+    @OneToOne(mappedBy = "atividade", cascade = CascadeType.ALL)
+    private Bloco bloco;
+
     @ManyToOne
     @JoinColumn(name = "categoria_id")
     private Categoria categoria;
